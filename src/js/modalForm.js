@@ -55,6 +55,8 @@ formFieldset.innerHTML = `
       modal__label_file">Добавить изображение</label>
     <input class="modal__file visually-hidden" tabindex="-1" type="file"
       name="image" id="image">
+    
+    <input type="hidden" name="query" value="add">
 `;
 
 const errorMessageBox = document.createElement('div');

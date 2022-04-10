@@ -7,8 +7,11 @@ const totalPrice = el('span.crm__total-price', '$ 900.00');
 const btnFilter = el('button.panel__filter', 'Фильтр');
 
 const searchForm = el('form.panel__search');
-const searchInput = el('panel__input');
+const searchInput = el('input.panel__input', {
+  placeholder: 'Поиск по наименованию и категории',
+});
 setChildren(searchForm, searchInput);
+
 const addGood = el('button.panel__add-goods', 'Добавить товар');
 
 const goodsTable = el('table.goods__table table');

@@ -4,11 +4,11 @@ const modal = el('div.overlay__modal.modal');
 
 const btnClose = el('button.modal__close');
 btnClose.innerHTML = `
-    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="m2 2 20 20M2 22 22 2" stroke="currentColor" 
-        stroke-width="3" stroke-linecap="round" />
-    </svg>
-  `;
+  <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="m2 2 20 20M2 22 22 2" stroke="currentColor" 
+      stroke-width="3" stroke-linecap="round" />
+  </svg>
+`;
 
 const modalTop = el('div.modal__top');
 const modalTitle = el('h2.modal__title');
@@ -39,11 +39,8 @@ setChildren(modalVendor, [
   vendorBtn,
 ]);
 
-
 setChildren(modalTop, [modalTitle, modalVendor]);
-
 setChildren(modal, [btnClose, modalTop]);
-
 
 export {
   modal,
