@@ -1,4 +1,4 @@
-import { recalcTotalPrice } from './controls.js';
+import { recalcTotalPrice } from './controls';
 import { goodsList } from './createCrm';
 
 const goodsData = [];

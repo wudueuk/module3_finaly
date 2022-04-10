@@ -9,7 +9,7 @@ const getGood = async goodId => await fetch(url + '/' + goodId)
 const postGoods = async (data) => await fetch(url, {
   method: 'POST',
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json; charset=UTF-8',
   },
   body: JSON.stringify(data),
 });
