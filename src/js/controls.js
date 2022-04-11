@@ -174,8 +174,8 @@ modalForm.addEventListener('submit', e => {
         'images': modalForm.image.value,
       },
     ];
-    fetchDB('PATH', vendorId.textContent, updateGood[0], updateGoodsList)
-      .then(answer => goodAnswer = answer ? true : false);
+    fetchDB('PATH', vendorId.textContent, updateGood[0], updateGoodsList);
+    goodAnswer = true;
   }
 
   if (goodAnswer) {
