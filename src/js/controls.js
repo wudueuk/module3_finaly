@@ -133,9 +133,12 @@ modalForm.addEventListener('submit', e => {
   e.preventDefault();
 
   let discount = false;
+
   if (modalForm.discount.checked === true) {
     discount = modalForm.discount_count.value;
   }
+
+  let goodAnswer = false;
 
   if (modalForm.query.value === 'add') {
     const newGood = [
@@ -151,9 +154,13 @@ modalForm.addEventListener('submit', e => {
         'images': modalForm.image.value,
       },
     ];
-    fetchDB('POST', '', newGood[0]);
-    goodsData.push(newGood[0]);
-    renderGoods(newGood);
+    fetchDB('POST', undefined, newGood[0]).then(answer => {
+      if (answer) {
+        goodsData.push(newGood[0]);
+        renderGoods(newGood);
+        goodAnswer = true;
+      }
+    });
   } else if (modalForm.query.value === 'patch') {
     const updateGood = [
       {
@@ -165,14 +172,17 @@ modalForm.addEventListener('submit', e => {
         'count': modalForm.count.value,
         'units': modalForm.units.value,
         'images': modalForm.image.value,
-      }
+      },
     ];
-    fetchDB('PATH', vendorId.textContent, updateGood[0], updateGoodsList);
+    fetchDB('PATH', vendorId.textContent, updateGood[0], updateGoodsList)
+      .then(answer => goodAnswer = answer ? true : false);
   }
 
-  modalForm.reset();
-  overlay.classList.remove('active');
-  overlay.textContent = '';
-  overlay.remove();
-  recalcTotalPrice(goodsData);
+  if (goodAnswer) {
+    modalForm.reset();
+    overlay.classList.remove('active');
+    overlay.textContent = '';
+    overlay.remove();
+    recalcTotalPrice(goodsData);
+  }
 });

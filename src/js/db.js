@@ -5,7 +5,8 @@ const url = 'http://localhost:3000/api/goods';
 const dbResponse = async (method, goodId, query) => {
   switch (method) {
     case 'GET':
-      const uri = goodId ? url + '/' + goodId : url;
+      const uri = goodId ? url + '/' + goodId : query
+        ? url + '/' + query : url;
       return await fetch(uri);
     case 'POST':
       return fetch(url, {
@@ -33,11 +34,16 @@ const dbResponse = async (method, goodId, query) => {
 const fetchDB = async (method, id, query, cb) => {
   return await dbResponse(method, id, query)
     .then(response => {
-      if (response.ok) {
+      if (response.status === 200 || response.status === 201) {
         return response.json();
-      } else mount(document.body, errOverlay);
+      } else {
+        mount(document.body, errOverlay);
+        return [];
+      }
     })
-    .then(data => cb(data));
+    .then(data => {
+      if (cb) { cb(data) }
+    });
 };
 
 export default fetchDB;
