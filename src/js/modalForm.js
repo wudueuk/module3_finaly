@@ -14,7 +14,7 @@ formFieldset.innerHTML = `
     <label class="modal__label modal__label_category" for="category">
       <span class="modal__text">Категория</span>
       <input class="modal__input" type="text" name="category" id="category"
-        required>
+        list="category-list" required>
     </label>
 
     <label class="modal__label modal__label_description" for="description">
@@ -58,6 +58,24 @@ formFieldset.innerHTML = `
     
     <input type="hidden" name="query" value="add">
 `;
+
+const dataListEl = el('datalist', { id: 'category-list' });
+
+const renderDataList = data => {
+  data.map(elem => {
+    const option = el('option', { value: elem });
+    dataListEl.append(option);
+  });
+};
+
+const getDataList = async cb => {
+  const response = await fetch('http://localhost:3000/api/category');
+  const data = await response.json();
+  cb(data);
+};
+
+getDataList(renderDataList);
+formFieldset.append(dataListEl);
 
 const errorMessageBox = document.createElement('div');
 errorMessageBox.style.gridArea = '.';

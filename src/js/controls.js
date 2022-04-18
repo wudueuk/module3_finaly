@@ -62,7 +62,7 @@ goodsList.addEventListener('click', e => {
 
   // Отслеживаем нажатие на кнопку картинку
   if (target.closest('.table__btn_pic')) {
-    const url = '../img/' + target.dataset.pic;
+    const url = '../' + target.dataset.pic;
     const top = screen.height / 2 - 300;
     const left = screen.width / 2 - 400;
     open(url, '', `width=800,height=600,top=${top},left=${left}`);
