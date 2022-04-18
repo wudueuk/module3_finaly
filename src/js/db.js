@@ -9,7 +9,7 @@ const dbResponse = async (method, goodId, query) => {
         ? url + '/' + query : url;
       return await fetch(uri);
     case 'POST':
-      return fetch(url, {
+      return await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',

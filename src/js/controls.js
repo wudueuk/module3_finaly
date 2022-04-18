@@ -62,7 +62,7 @@ goodsList.addEventListener('click', e => {
 
   // Отслеживаем нажатие на кнопку картинку
   if (target.closest('.table__btn_pic')) {
-    const url = '../' + target.dataset.pic;
+    const url = 'localhost:3000/' + target.dataset.pic;
     const top = screen.height / 2 - 300;
     const left = screen.width / 2 - 400;
     open(url, '', `width=800,height=600,top=${top},left=${left}`);
@@ -151,16 +151,16 @@ modalForm.addEventListener('submit', e => {
         'discont': discount,
         'count': modalForm.count.value,
         'units': modalForm.units.value,
-        'images': modalForm.image.value,
+        'image': modalForm.image.value,
       },
     ];
-    fetchDB('POST', undefined, newGood[0]).then(answer => {
-      if (answer) {
-        goodsData.push(newGood[0]);
-        renderGoods(newGood);
-        goodAnswer = true;
-      }
-    });
+    const answer = fetchDB('POST', undefined, newGood[0], undefined);
+    console.log('answer: ', answer);
+    if (answer) {
+      goodsData.push(newGood[0]);
+      renderGoods(newGood);
+      goodAnswer = true;
+    }
   } else if (modalForm.query.value === 'patch') {
     const updateGood = [
       {
