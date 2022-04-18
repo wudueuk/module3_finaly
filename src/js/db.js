@@ -42,7 +42,10 @@ const fetchDB = async (method, id, query, cb) => {
       }
     })
     .then(data => {
-      if (cb) { cb(data) }
+      if (cb) {
+        cb(data);
+      }
+      return true;
     });
 };
 
